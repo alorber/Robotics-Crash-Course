@@ -3,7 +3,7 @@
 void setup() {
   Serial.begin(9600);
 
-  // Creat an array of type int and size 10:
+  // Create an array of type int and size 10:
 
   // Using a while loop, fill the array with multiples of 3 between 3 and 30 (inclusive):
                 // Remember the syntax?

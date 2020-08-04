@@ -25,7 +25,7 @@ class Deck {
 
   public:
     Deck();
-    Card getTopCard();
+    Card draw();
     void reset();
     void shuffle();
     void printDeck();
@@ -33,26 +33,19 @@ class Deck {
 
 
 Deck::Deck() {
-  char suits[4] = {'H', 'S', 'C', 'D'};
-  int ind = 0;
-  for(char s : suits){
-    for(int i = 1; i <= 13; i++){
-      cards[ind] = new Card(s, i);
-      ind++;
-    }
-  }
+  reset();
 }
 
-Card Deck::getTopCard(){
+Card Deck::draw(){
   if(topcard == 51){
     Serial.println("Deck is empty.");
-    Serial.println("Shuffling...");
+    Serial.println("Shuffling new deck...");
+    reset();
     shuffle();
   }
   topcard++;
   return *(cards[topcard]);
 }
-
 void Deck::reset(){
   char suits[4] = {'H', 'S', 'C', 'D'};
   int ind = 0;
@@ -62,7 +55,7 @@ void Deck::reset(){
       ind++;
     }
   }
-  topcard = 0;
+  topcard = -1;
 }
 
 void Deck::shuffle(){
@@ -72,7 +65,6 @@ void Deck::shuffle(){
     cards[i] = cards[r];
     cards[r] = tempC;
   }
-  topcard = 0;
 }
 
 void Deck::printDeck(){
@@ -92,5 +84,5 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  
 }
